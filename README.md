@@ -30,10 +30,10 @@ Connect to default database
 psql postgres
 ```
 
-Create user "me" with password "password"
+Create user "me" with password "**_password_**"
 
 ```postgres
-postgres=# CREATE ROLE me WITH LOGIN PASSWORD 'password';
+postgres=# CREATE ROLE me WITH LOGIN PASSWORD '**_password_**';
 ```
 
 To give user permission to create a database
@@ -72,7 +72,7 @@ which is used here):
 USER = "me"
 HOST = "localhost"
 DATABASE = "distributed_warehouse"
-PASSWORD = "password"
+PASSWORD = "***"
 DATABASE_PORT = 5432
 ```
 
