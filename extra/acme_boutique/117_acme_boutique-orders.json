@@ -1,0 +1,19 @@
+{
+  "chain_id": "40",
+  "store_id": "609",
+  "order_number": "BB-5QX-121212",
+  "customer": "Rick Sanchez",
+  "phone": "+4754321543",
+  "file_name": "Order_38",
+  "test_mode": 0,
+  "order_lines": [
+    {
+      "sku": "727272720004",
+      "quantity": 1
+    },
+    {
+      "sku": "727272720004",
+      "quantity": 1
+    }
+  ]
+}

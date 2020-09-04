@@ -1,0 +1,27 @@
+{
+  "chain_id": "10",
+  "store_id": "604",
+  "order_number": "BB-1AB-112233",
+  "customer": "Morty Sanchez",
+  "phone": "+47123456",
+  "file_name": "Order_30",
+  "test_mode": 0,
+  "order_lines": [
+    {
+      "sku": "12345600002",
+      "quantity": 1
+    },
+    {
+      "sku": "12345600001",
+      "quantity": 2
+    },
+    {
+      "sku": "1234560009",
+      "quantity": 2
+    },
+    {
+      "sku": "1234560002",
+      "quantity": 2
+    }
+  ]
+}

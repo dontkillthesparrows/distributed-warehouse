@@ -1,0 +1,27 @@
+{
+  "chain_id": "40",
+  "store_id": "105",
+  "order_number": "BB-3QV-223344",
+  "customer": "Bird Person",
+  "phone": "+47123456",
+  "file_name": "Order_35",
+  "test_mode": 0,
+  "order_lines": [
+    {
+      "sku": "72466940004",
+      "quantity": 1
+    },
+    {
+      "sku": "72462990004",
+      "quantity": 2
+    },
+    {
+      "sku": "72462990015",
+      "quantity": 2
+    },
+    {
+      "sku": "72445400007",
+      "quantity": 2
+    }
+  ]
+}

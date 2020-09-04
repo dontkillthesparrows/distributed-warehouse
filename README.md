@@ -1,68 +1,105 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Distributed Warehouse - POC application
 
-## Available Scripts
+This is a DEMO of a proof of concept. It has been stripped from production
+related code, authentication, API requests as well as slightly modified from its
+original state.
 
-In the project directory, you can run:
+The application was built to be used by personell in clothing stores in a bigger
+chain. If a customer bought a product online and selected "pick-up in store",
+the store would receive a request to handle the order. The request need to be
+anwered within two hours, else the order would be forwarded to head warehouse.
 
-### `npm start`
+## A postgresql database is needed to run the app locally
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+### Postgres
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+Here is a guide for installing postgres on mac and setting up a basic database:
+<https://blog.logrocket.com/setting-up-a-restful-api-with-node-js-and-postgresql-d96d6fc892d8/>
 
-### `npm test`
+#### install postgres on Windows
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+<https://www.postgresql.org/download/windows/> here you find an interactive
+installer or zip files. Documentation for setup on windows here:
+<https://www.labkey.org/Documentation/wiki-page.view?name=installPostgreSQLWindows>
 
-### `npm run build`
+### When PostgreSQL is installed
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Connect to default database
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+```bash
+psql postgres
+```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Create user "me" with password "password"
 
-### `npm run eject`
+```postgres
+postgres=# CREATE ROLE me WITH LOGIN PASSWORD 'password';
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+To give user permission to create a database
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+```postgres
+postgres=# ALTER ROLE me CREATEDB;
+```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+Connect to DB with user
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+```postgres
+psql -d postgres -U me
+```
 
-## Learn More
+Create database
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+```postgres
+postgres=> CREATE DATABASE distributed_warehouse;
+```
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+Connect to new database
 
-### Code Splitting
+```postgres
+postgres=> \c distributed_warehouse;
+```
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
+Use the notes in pg_init.sql to paste in needed data in postgres.
 
-### Analyzing the Bundle Size
+### Add database port in environment
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
+In your .env-file, paste in the following (username, password and database name
+need to match what you set up in postgres. Default port in postgres are 5432
+which is used here):
 
-### Making a Progressive Web App
+```.env
+USER = "me"
+HOST = "localhost"
+DATABASE = "distributed_warehouse"
+PASSWORD = "password"
+DATABASE_PORT = 5432
+```
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
+Make sure to add a port in your environment file as well
 
-### Advanced Configuration
+```.env
+PORT = 3000
+```
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
+### Postman
 
-### Deployment
+<https://www.getpostman.com/>
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
+### Add mock-orders into the database
 
-### `npm run build` fails to minify
+send a POST request to <http://localhost:3000/api/orders/> with JSON body. Mock
+order from test environment can be found in extra/acme-boutique and
+extra/acme-industries.
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+For each order added in DB a new unique ordernumber must be created:
+
+```json
+"order_number": "..."
+```
+
+Add the storeaccount name manually in src/components/MainView/index.js
+
+```js script
+const storeName = 'test_store_4';
+```

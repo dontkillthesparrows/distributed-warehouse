@@ -1,0 +1,23 @@
+{
+  "chain_id": "10",
+  "store_id": "607",
+  "order_number": "BB-1AB-112234",
+  "customer": "Frank Human",
+  "phone": "+47987654321",
+  "file_name": "Order_31",
+  "test_mode": 0,
+  "order_lines": [
+    {
+      "sku": "12345600002",
+      "quantity": 1
+    },
+    {
+      "sku": "12345600001",
+      "quantity": 2
+    },
+    {
+      "sku": "1234560009",
+      "quantity": 2
+    }
+  ]
+}

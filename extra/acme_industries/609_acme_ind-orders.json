@@ -1,0 +1,27 @@
+{
+  "chain_id": "10",
+  "store_id": "609",
+  "order_number": "BB-1AB-112235",
+  "customer": "Theresa Mother",
+  "phone": "+47789987",
+  "file_name": "Order_32",
+  "test_mode": 0,
+  "order_lines": [
+    {
+      "sku": "72497200002",
+      "quantity": 1
+    },
+    {
+      "sku": "72497200001",
+      "quantity": 2
+    },
+    {
+      "sku": "72502270009",
+      "quantity": 2
+    },
+    {
+      "sku": "72456860002",
+      "quantity": 2
+    }
+  ]
+}
